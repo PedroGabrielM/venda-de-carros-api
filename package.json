@@ -1,0 +1,29 @@
+{
+  "name": "venda-de-carros",
+  "version": "1.0.0",
+  "description": "Api de venda de carros em nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "star": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PedroGabrielM/venda-de-carros-api.git"
+  },
+  "author": "Pedro Gabriel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PedroGabrielM/venda-de-carros-api/issues"
+  },
+  "homepage": "https://github.com/PedroGabrielM/venda-de-carros-api#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.3",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
