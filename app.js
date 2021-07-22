@@ -3,6 +3,8 @@ const mongoose =    require('mongoose');
 const morgan =      require('morgan');
 const bodyParse =   require('body-parser');
 
+const usuarioRoute = require('./routes/usuarios')
+
 mongoose.connect('mongodb://localhost:27017/venda-de-carros-db', {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection
 
@@ -32,7 +34,7 @@ app.use('/vendas', rotaVendas);
 app.use((req, res, next) => {
     res.header('Acces-Control-Allow-Origin', '*');
     res.header('Acces-Control-Allow-Header',
-     'Origin, X-Requrested-With, Content-Type, Accept, Authorization'
+     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
     );
 
     if(res.method === 'OPTIONS') {

@@ -1,49 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-    res.status(200).send({
-        mensagem: 'Retorna os usuários'
-    });
-});
+const usuarioController = require('../controllers/usuarioController')
 
-router.post('/', (req, res, next) => {
-    const usuario = {
-        email: req.body.email,
-        senha: req.body.senha,
-        ultimo_login: req.body.ultimo_login
-    }
-    res.status(201).send({
-        mensagem: 'Usuário criado'
-    });
-});
-
-router.get('/:id_usuario', (req, res, next) => {
-    const id = req.params.id_usuario
-
-    if(id === 'especial'){
-        res.status(200).send({
-            mensagem: 'Descobriu id especial',
-            id: id
-        });
-    } else {
-        res.status(200).send({
-            mensagem: 'Passou Id'
-        });
-    }
-    
-});
-
-router.patch('/', (req, res, next) => {
-    res.status(201).send({
-        mensagem: 'Usuário alterado'
-    });
-});
-
-router.delete('/', (req, res, next) => {
-    res.status(201).send({
-        mensagem: 'Usuário deletado'
-    });
-});
+router.get('/', usuarioController.index)
+router.post('/show', usuarioController.show)
+router.post('/store', usuarioController.store)
+router.post('/update', usuarioController.update)
+router.post('/delete', usuarioController.destroy)
 
 module.exports = router;
