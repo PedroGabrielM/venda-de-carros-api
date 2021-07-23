@@ -36,5 +36,6 @@ $ ../venda-de-carro -> code .
 npm start - nodemon
 
 rodar scripts de range no mongo , data_range e preco_range
+Retirar de dentro do projeto(data_range e preco_range)
 
 -Realizar tests no postaman
