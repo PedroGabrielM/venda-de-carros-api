@@ -1,4 +1,5 @@
 const Carros = require('../models/Carros')
+const db = require('../app')
 
 const index = (req, res, next) => {
     Carros.find()
@@ -30,6 +31,7 @@ const show = (req, res, next) => {
 }
 
 const store = (req, res, next) => {
+
     let carro = new Carros({
         marca: req.body.nome,
         model: req.body.email,

@@ -15,7 +15,7 @@ const carroSchema = new Schema ({
     },
         
     ano: {
-        type: String
+        type: Date
     },
     
     quilom: {

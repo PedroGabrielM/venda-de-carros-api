@@ -4,7 +4,9 @@
   "description": "Api de venda de carros em nodejs",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "test": "jest",
+    "test:cov": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -29,6 +31,7 @@
     "restify": "^8.5.1"
   },
   "devDependencies": {
+    "jest": "^27.0.6",
     "nodemon": "^2.0.12"
   }
 }

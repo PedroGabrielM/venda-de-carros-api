@@ -35,4 +35,6 @@ Conectar robo 3T -> new connection
 $ ../venda-de-carro -> code .
 npm start - nodemon
 
+rodar scripts de range no mongo , data_range e preco_range
+
 -Realizar tests no postaman
