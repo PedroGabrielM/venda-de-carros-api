@@ -4,7 +4,7 @@
   "description": "Api de venda de carros em nodejs",
   "main": "index.js",
   "scripts": {
-    "star": "nodemon server.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -17,11 +17,14 @@
   },
   "homepage": "https://github.com/PedroGabrielM/venda-de-carros-api#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.3",
     "morgan": "^1.10.0",
+    "multer": "^1.4.2",
     "pm2": "^5.1.0",
     "restify": "^8.5.1"
   },

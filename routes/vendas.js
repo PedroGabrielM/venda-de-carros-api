@@ -1,12 +1,12 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-const vendaController = require('../controllers/vendaController')
+const VendaController = require('../controllers/VendaController')
 
-router.get('/', vendaController.index)
-router.post('/show', vendaController.show)
-router.post('/store', vendaController.store)
-router.post('/update', vendaController.update)
-router.post('/delete', vendaController.destroy)
+router.get('/', VendaController.index)
+router.post('/show', VendaController.show)
+router.post('/store', VendaController.store)
+router.post('/update', VendaController.update)
+router.post('/delete', VendaController.destroy)
 
-module.exports = router;
+module.exports = router

@@ -1,11 +1,14 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const vendaSchema = new Schema ({
-    nomeVenda: {
+const vendedorSchema = new Schema ({
+    nameVendedor: {
         type: String
     },
     emailVendedor: {
+        type: String
+    },
+    descricao: {
         type: String
     },
     carro_carroId: {
@@ -13,5 +16,5 @@ const vendaSchema = new Schema ({
     }
 })
 
-const Vendas = mongoose.model('Vendas', vendaSchema)
-module.exports = Vendas
+const Vendedor = mongoose.model('Vendedor', vendedorSchema)
+module.exports = Vendedor

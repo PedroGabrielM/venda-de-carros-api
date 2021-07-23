@@ -1,7 +1,7 @@
-const Carros = require('../models/Carros')
+const Vendedor = require('../models/Vendedor')
 
 const index = (req, res, next) => {
-    Carros.find()
+    Vendedor.find()
     .then(response => {
         res.json({
             response
@@ -15,8 +15,8 @@ const index = (req, res, next) => {
 }  
     
 const show = (req, res, next) => {
-    let carroId = req.body.carroId
-    Carros.findById(carroId)
+    let vendedorId = req.body.vendedorId
+    Vendedor.findById(vendedorId)
     .then(response => {
         res.josn({
             response
@@ -30,19 +30,16 @@ const show = (req, res, next) => {
 }
 
 const store = (req, res, next) => {
-    let carro = new Carros({
-        marca: req.body.nome,
-        model: req.body.email,
-        versao: req.body.versao,
-        ano: req.body.ano,
-        quilom: req.body.quilom,
-        cambio: req.body.cambio,
-        preco: req.body.preco
+    let vendedor = new Vendedor({
+        nameVendedor: req.body.nomeVendedor,
+        emailVendedor:req.body.emailVendedor,
+        descricao:req.body.descricao,
+        carro_carroId: req.body.carro_carroId 
     })
-    usuario.save()
+    vendedor.save()
     .then(response  => {
         res.json({
-            message: 'Carro add!'
+            message: 'Vendedor add!'
         })
     })
     .catch(error => {
@@ -53,22 +50,19 @@ const store = (req, res, next) => {
 }
 
 const update = (req, res, next) => {
-    let carroId = req.body.carroId
+    let vendedorId = req.body.vendedorId
 
     let updateData = {
-        marca: req.body.nome,
-        model: req.body.email,
-        versao: req.body.versao,
-        ano: req.body.ano,
-        quilom: req.body.quilom,
-        cambio: req.body.cambio,
-        preco: req.body.preco
+        nameVendedor: req.body.nomeVendedor,
+        emailVendedor:req.body.emailVendedor,
+        descricao:req.body.descricao,
+        carro_carroId: req.body.carro_carroId 
     }
 
-    Carros.findByIdAndUpdate(carroId, {$set: updateData})
+    Vendedor.findByIdAndUpdate(vendedorId, {$set: updateData})
     .then(() => {
         res.json({
-            message: 'Carro update'
+            message: 'Vendedor update'
         })
     })
     .catch(error => {
@@ -79,11 +73,11 @@ const update = (req, res, next) => {
 }
 
 const destroy = (req, res, next)=> {
-    let carroId = req.body.carroId
-    Carros.findByAndRemove(carroId)
+    let vendedorId = req.body.vendedorId
+    Vendedor.findByAndRemove(vendedorId)
     .then(() => {
         req.json({
-            message: 'Carro deleted'
+            message: 'Vendedor deleted'
         })
     })
     .catch(error => {

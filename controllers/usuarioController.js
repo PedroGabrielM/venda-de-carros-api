@@ -1,90 +1,68 @@
-const Usuarios = require('../models/usuarios')
+const Usuarios = require('../models/Usuarios')
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
-const index = (req, res, next) => {
-    Usuarios.find()
-    .then(response => {
-        res.json({
-            response
+const register = (req, res, next) => {
+    bcrypt.hash(req.body.password, 10, function(err, hashedPass) {
+        if(err) {
+            res.json({
+                error: err
+            })
+        }
+
+        let usuario = new Usuarios({
+            name: req.body.name,
+            email: req.body.email,
+            phone: req.body.phone,
+            password: hashedPass
         })
-    })
-    .catch(error => {
-        res.json({
-            message: 'Erro'
+        usuario.save()
+        .then(response  => {
+            res.json({
+                message: 'Usuario add!'
+            })
         })
-    })
-}  
-    
-const show = (req, res, next) => {
-    let usuarioId = req.body.usuarioId
-    Usuarios.findById(usuarioId)
-    .then(response => {
-        res.josn({
-            response
-        })
-    })
-    .catch(error => {
-        res.json({
-            message: 'Erro'
+        .catch(error => {
+            res.json({
+                message: 'Erro'
+            })
         })
     })
 }
 
-const store = (req, res, next) => {
-    let usuario = new Usuarios({
-        nome: req.body.nome,
-        email: req.body.email,
-        pass: req.body.pass
-    })
-    usuario.save()
-    .then(response  => {
-        res.json({
-            message: 'Usuario add!'
-        })
-    })
-    .catch(error => {
-        res.json({
-            message: 'Erro'
-        })
-    })
-}
+const login = (req, res, next) => {
+    var username = req.body.username
+    var password = req.body.password
 
-const update = (req, res, next) => {
-    let usuarioId = req.body.usuarioId
-
-    let updateData = {
-        nome: req.body.nome,
-        email: req.body.email,
-        pass: req.body.pass
-    }
-
-    Usuarios.findByIdAndUpdate(usuarioId, {$set: updateData})
-    .then(() => {
-        res.json({
-            message: 'Usuasrio update'
-        })
-    })
-    .catch(error => {
-        res.json({
-            message: 'erro'
-        })
-    })
-}
-
-const destroy = (req, res, next)=> {
-    let usuarioId = req.body.usuarioId
-    Usuarios.findByAndRemove(usuarioId)
-    .then(() => {
-        req.json({
-            message: 'Usuario deleted'
-        })
-    })
-    .catch(error => {
-        req.json({
-            message: 'Erro'
-        })
+    Usuarios.findOne({$or: [{email: username}, {phone: username}]})
+    .then(usuario => {
+        if(usuario){
+            bcrypt.compare(password, usuario.password, function(err, result){
+                if(err) {
+                    res.json({
+                        error: err
+                    })
+                }
+                if(result) {
+                    let token = jwt.sign({name: usuario.name}, 'verySecretValue', {expiresIn: '1h'})
+                    res.json({
+                        message: 'Login Success',
+                        token
+                    })
+                } else {
+                    res.json({
+                        message: 'Password does not matched'
+                    })
+                }
+            })
+        } else {
+            res.json({
+                message: 'Erro'
+            })
+        }
     })
 }
 
 module.exports = {
-    index, show, store, update, destroy
+    register, login
 }

@@ -1,4 +1,4 @@
-const Vendas = require('../models/vendas')
+const Vendas = require('../models/Vendas')
 
 const index = (req, res, next) => {
     Vendas.find()
@@ -31,7 +31,7 @@ const show = (req, res, next) => {
 
 const store = (req, res, next) => {
     let venda = new Vendas({
-        nomeVendedor: req.body.nomeVendedor,
+        nomeVenda: req.body.nomeVenda,
         emailVendedor:req.body.emailVendedor,
         carro_carroId: req.body.carro_carroId 
     })
@@ -52,7 +52,7 @@ const update = (req, res, next) => {
     let vendasId = req.body.vendasId
 
     let updateData = {
-        nomeVendedor: req.body.nomeVendedor,
+        nomeVenda: req.body.nomeVenda,
         emailVendedor:req.body.emailVendedor,
         carro_carroId: req.body.carro_carroId 
     }

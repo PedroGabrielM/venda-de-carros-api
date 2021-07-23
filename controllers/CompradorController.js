@@ -1,7 +1,7 @@
-const Carros = require('../models/Carros')
+const Comprador = require('../models/Comprador')
 
 const index = (req, res, next) => {
-    Carros.find()
+    Comprador.find()
     .then(response => {
         res.json({
             response
@@ -15,8 +15,8 @@ const index = (req, res, next) => {
 }  
     
 const show = (req, res, next) => {
-    let carroId = req.body.carroId
-    Carros.findById(carroId)
+    let compradorId = req.body.compradorId
+    Comprador.findById(compradorId)
     .then(response => {
         res.josn({
             response
@@ -30,19 +30,15 @@ const show = (req, res, next) => {
 }
 
 const store = (req, res, next) => {
-    let carro = new Carros({
-        marca: req.body.nome,
-        model: req.body.email,
-        versao: req.body.versao,
-        ano: req.body.ano,
-        quilom: req.body.quilom,
-        cambio: req.body.cambio,
-        preco: req.body.preco
+    let comprador = new Comprador({
+        nameComprador: req.body.nameComprador,
+        emailComprador:req.body.emailComprador,
+        descricao:req.body.descricao 
     })
-    usuario.save()
+    comprador.save()
     .then(response  => {
         res.json({
-            message: 'Carro add!'
+            message: 'Comprador add!'
         })
     })
     .catch(error => {
@@ -53,22 +49,18 @@ const store = (req, res, next) => {
 }
 
 const update = (req, res, next) => {
-    let carroId = req.body.carroId
+    let compradorId = req.body.compradorId
 
     let updateData = {
-        marca: req.body.nome,
-        model: req.body.email,
-        versao: req.body.versao,
-        ano: req.body.ano,
-        quilom: req.body.quilom,
-        cambio: req.body.cambio,
-        preco: req.body.preco
+        nameComprador: req.body.nameComprador,
+        emailComprador:req.body.emailComprador,
+        descricao:req.body.descricao
     }
 
-    Carros.findByIdAndUpdate(carroId, {$set: updateData})
+    Comprador.findByIdAndUpdate(compradorId, {$set: updateData})
     .then(() => {
         res.json({
-            message: 'Carro update'
+            message: 'Comprador update'
         })
     })
     .catch(error => {
@@ -79,11 +71,11 @@ const update = (req, res, next) => {
 }
 
 const destroy = (req, res, next)=> {
-    let carroId = req.body.carroId
-    Carros.findByAndRemove(carroId)
+    let compradorId = req.body.compradorId
+    Comprador.findByAndRemove(compradorId)
     .then(() => {
         req.json({
-            message: 'Carro deleted'
+            message: 'Comprador deleted'
         })
     })
     .catch(error => {

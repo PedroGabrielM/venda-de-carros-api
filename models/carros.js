@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const carroSchema = new Schema ({
     marca: {
@@ -30,7 +30,7 @@ const carroSchema = new Schema ({
         type: String
     }
 
-});
+})
 
 const Carros = mongoose.model('Carros', carroSchema)
 module.exports = Carros
